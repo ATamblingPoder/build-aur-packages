@@ -9,6 +9,7 @@ RUN sed -i 's,#DisableSandbox,DisableSandbox,' /etc/pacman.conf
 # Note: update (-u) so that the newly installed tools use up-to-date packages.
 #       For example, gcc (in base-devel) fails if it uses an old glibc (from
 #       base image).
+RUN printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" >> /etc/pacman.conf
 RUN pacman -Syu --noconfirm base-devel
 
 # Patch makepkg to allow running as root; see
